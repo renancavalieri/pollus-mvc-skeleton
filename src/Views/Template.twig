@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{ page_title }} | {{ app_title }}</title>
+        
+        {# 
+            Estes arquivos não são necessários para a framework e foram inclusos
+            apenas para exemplo
+        #}
+        {{ asset("/assets/jquery/jquery-3.3.1.min.js") }}
+        {{ asset("/assets/semantic-ui/semantic.min.css") }}
+        {{ asset("/assets/semantic-ui/semantic.min.js") }}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        {% block menu %}
+            {% include 'Includes/Menu.twig' %}
+        {% endblock %}
+        {% block content %}
+            Sobrescreva este bloco com o conteúdo de sua página
+        {% endblock %}
+    </body>
+</html>

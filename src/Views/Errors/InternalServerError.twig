@@ -1,0 +1,43 @@
+{% extends "Template.twig" %}
+{% set page_title = "Index" %}
+
+{% block menu %} 
+{% endblock %} 
+
+{% block content %} 
+    <style>
+        body
+        {
+            background: #a20025;
+        }
+    </style>
+    <div class="ui container" style="text-align: center">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 style="font-size: 10em; margin: 0; color: #fff;">
+            <i class="exclamation triangle small icon"></i>500
+        </h1>
+        <h3 style="margin: 0; color: #eee; font-weight: lighter">
+            Desculpe, o servidor não pode completar sua requisição neste momento.
+            <br><br>
+        </h3>
+    </div>
+    {% if exception is defined %}
+        <div class="ui container">
+            <div class="ui fluid red segment" style="overflow-x: scroll">
+                <b>Detalhes do erro: </b>
+                <pre>{{ exception }}</pre>
+            </div>
+            <br>
+            <br>
+        </div>
+    {% else %}
+        <div class="ui container" style="text-align: center; color: #eee">
+            <h3>Caso o problema persista, por favor entre em contato com o administrador</h3>
+            <br>
+            <br>
+        </div>
+    {% endif %}
+{% endblock %}
