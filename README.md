@@ -1,3 +1,5 @@
-# pollus-mvc-skeleton
+# Pollus MVC Skeleton
 
-Documentação indisponível no momento
+Documentation unavailable.
+
+```composer create-project pollus-mvc-skeleton```

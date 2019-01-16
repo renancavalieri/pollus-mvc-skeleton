@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        {%  block head %}
+            <title>{{ page_title }} | {{ app_title }}</title>
+            <script src="{{ url("/assets/jquery/jquery-3.3.1.min.js") }}"></script>
+            <link rel="stylesheet" href="{{ url("/assets/semantic-ui/semantic.min.css") }}" />
+            <script src="{{ url("/assets/semantic-ui/semantic.min.js") }}"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                .vmiddle 
+                { 
+                    display: flex !important;
+                    justify-content: center; 
+                    align-items: center !important;
+                    height: 100vh !important;
+                } 
+ 
+                .ui.container 
+                {
+                    width: 95% !important;
+                    max-width: 1440px !important;
+                }
+
+                .select-checkbox
+                {
+                    max-width: 50px !important;
+                    width: 50px !important;
+                }
+
+            </style>
+        {% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        {% block body %}
+            {% block menu %}
+            {% endblock %}
+            {% block content %}
+                Sobrescreva este bloco com o conteúdo de sua página
+            {% endblock %}
+        {% endblock %}
+    </body>
+</html>

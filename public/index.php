@@ -1,1 +1,5 @@
-<?php require_once __DIR__ . "/../src/app.php";
+<?php 
+ini_set("display_errors", 1);
+require_once __DIR__ . "/../vendor/autoload.php";
+$app = new App\MyApp();
+$app->run();

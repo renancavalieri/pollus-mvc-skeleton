@@ -1,12 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Controllers;
 
 use Pollus\Mvc\Controller\MvcController;
 
-/**
- * Todos os controllers devem estender a classe {@see MvcController}
- */
 class HomeController extends MvcController
 {
     /**
@@ -14,6 +11,6 @@ class HomeController extends MvcController
      */
     public function index()
     {
-        return $this->view->Render('Paginas/Index.twig');
+        return $this->view->Render('Pages/Index.twig');
     }
 }

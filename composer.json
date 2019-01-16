@@ -1,6 +1,6 @@
 {
     "name": "pollus/mvc-skeleton",
-    "description": "Esqueleto MVC para Slim Framework 3",
+    "description": "Mvc Skeleton for Pollus Framework",
     "keywords": ["framework", "php", "slim", "pollus"],
     "type": "project",
     "license": "MIT",
@@ -13,14 +13,17 @@
     ],
     "require": 
     {
-        "pollus/mvc": "^1.0.0",
-        "zeuxisoo/slim-whoops": "0.6.4"
+        "pollus/mvc": "^2.0.0",
+        "pollus/http-client-fingerprint": "^1.1.1",
+        "zeuxisoo/slim-whoops": "0.6.4",
+        "monolog/monolog": "1.24.0"
     },
     "autoload": 
     {
         "psr-4": 
         {
-            "App\\": "src/"
+            "App\\": "src/App",
+            "Pollus\\Core\\": "src/Core"
         }
     }
 }
