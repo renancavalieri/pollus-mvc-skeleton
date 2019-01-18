@@ -2,4 +2,4 @@
 
 Documentation unavailable.
 
-```composer create-project pollus-mvc-skeleton```
+```composer create-project pollus/mvc-skeleton```
