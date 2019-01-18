@@ -11,7 +11,8 @@ use Pollus\Slim\Dispatcher\SlimDispatcher;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use Pollus\TwigView\TwigView;
-use Pollus\TwigView\Extensions\UrlExtension;
+use Pollus\TwigPublicPath\PublicPathComponent;
+use Pollus\TwigPublicPath\PublicPathExtension;
 use Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware;
 use Pollus\Mvc\MvcApplication;
 use Pollus\HttpClientFingerprint\HttpClientFingerprint;
@@ -37,7 +38,9 @@ abstract class Module extends MvcApplication implements WebAppInterface, Console
 
             // Configura se o Whoops será restrito a determinados IPs [false|array]
             'debug_allow_from_ip_only' => ['127.0.0.1'],
-
+            
+            'base_url' => "",
+            
             // Namespace
             'namespace' => basename(__DIR__),
 
@@ -76,7 +79,7 @@ abstract class Module extends MvcApplication implements WebAppInterface, Console
                 
                 if ($request->isXhr() === true)
                 {
-                    return $view->asJson(["success" => false, "message" => "Not found"])->withStatus(404);
+                    return $view->renderAsJson(["success" => false, "message" => "Not found"])->withStatus(404);
                 }
                 return $view->render('@core/Errors/NotFound.twig')->withStatus(404);
             };
@@ -89,7 +92,7 @@ abstract class Module extends MvcApplication implements WebAppInterface, Console
                 $view = $container["view"]->setResponse($response);
                 if ($request->isXhr() === true)
                 {
-                    return $view->asJson
+                    return $view->renderAsJson
                         ([
                             "success" => false,
                             "message" => "Method Not Allowed" . implode(', ', $methods),
@@ -124,7 +127,7 @@ abstract class Module extends MvcApplication implements WebAppInterface, Console
                 {
                     $msg = ["success" => false, "message" => "Internal Server Error"];
                     if ($show_errors) $msg = array_merge($msg, ["exception" => $exception]);
-                    return $view->asJson($msg)->withStatus(500);
+                    return $view->renderAsJson($msg)->withStatus(500);
                 } 
                 else 
                 {
@@ -172,6 +175,14 @@ abstract class Module extends MvcApplication implements WebAppInterface, Console
      */
     public function setupDependencies(ContainerInterface $container) 
     {
+        // URL
+        $container["url"] = function($c)
+        {
+            $settings = $c["settings"];
+            $component = new PublicPathComponent($settings["base_url"]);
+            return $component;
+        };
+        
         // View
         $container["view"] = function($c) {
             $config = $c["settings"];
@@ -181,7 +192,10 @@ abstract class Module extends MvcApplication implements WebAppInterface, Console
                 $loader->addPath($tpl_path, $tpl_namespace);
             }
             $twig = new Environment($loader, ['cache' => $config["templates_cache"]]);
-            $twig->addExtension(new UrlExtension());
+            
+            /** @var PublicPathComponent $component**/
+            $component = $c["url"];
+            $twig->addExtension(new PublicPathExtension($component));
             return new TwigView($twig, $config["default_vars"]);
         };
         
