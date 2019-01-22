@@ -2,13 +2,31 @@
 {% set page_title = "Index" %}
 
 {% block content %} 
-    <div class="ui container">
-        <div class="ui blue segment top attached">
-            <h1>Olá mundo!</h1>
+    <style>
+        .blink 
+        {
+            animation: blink-animation 1s steps(2, start) infinite;
+            -webkit-animation: blink-animation 1s steps(2, start) infinite;
+        }
+          @keyframes blink-animation {
+            to {
+              visibility: hidden;
+            }
+          }
+          @-webkit-keyframes blink-animation {
+            to {
+              visibility: hidden;
+            }
+    </style>
+    
+    <div class="ui segment green fluid inverted basic" style="margin-top: 0 !important; padding: 50px 0 !important">
+        <div class="ui container">
+            <h1><i class="terminal icon"></i> Olá mundo! <span class="blink">▂</span></h1>
         </div>
-        <div class="ui attached segment">
-            <p>Esta é a página inicial de sua aplicação</p>
-            <p>Você pode excluir ou personalizar estes arquivos</p>
+    </div>
+    <div class="ui container">
+        <div class="ui attached segment raised">
+            <p>Esta é a página inicial de sua aplicação, você pode excluir ou personalizar estes arquivos.</p>
         </div>
     </div>
 {% endblock %}

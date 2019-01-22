@@ -12,12 +12,9 @@ class MyApp extends \Pollus\Core\Module
     public function getConfigArray(): array 
     {
         return array_replace_recursive(parent::getConfigArray(), 
-        [
-            'namespace' =>  basename(__DIR__),
-            'controllers_namespace' => basename(__DIR__) . "\\Controllers",
-            
+        [            
             // Debug
-            'debug' => false,
+            'debug' => true,
             
             // Whoops IP Address
             'debug_allow_from_ip_only' => ['127.0.0.1'],
@@ -47,4 +44,10 @@ class MyApp extends \Pollus\Core\Module
         // Example command
         $app->add(new GreetCommand());
     }
+
+    protected function getNamespace(): string 
+    {
+        return "App";
+    }
+
 }

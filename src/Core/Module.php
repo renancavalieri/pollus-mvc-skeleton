@@ -42,10 +42,10 @@ abstract class Module extends MvcApplication implements WebAppInterface, Console
             'base_url' => "",
             
             // Namespace
-            'namespace' => basename(__DIR__),
+            'namespace' => $this->getNamespace(),
 
             //Namespace de seus controllers
-            'controllers_namespace' => basename(__DIR__) .  '\\Controllers',   
+            'controllers_namespace' => $this->getNamespace() .  '\\Controllers',   
 
             // Locais dos arquivos de template
             'templates' => [ 'core'  => __DIR__ . "/Views"],
@@ -248,4 +248,12 @@ abstract class Module extends MvcApplication implements WebAppInterface, Console
      * @param ContainerInterface $container
      */
     public function setupCommands(Application $app, ContainerInterface $container) {}
+    
+    
+    /**
+     * Gets the namespace
+     * 
+     * @return string
+     */
+    protected abstract function getNamespace() : string;
 }

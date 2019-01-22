@@ -13,10 +13,11 @@
     ],
     "require": 
     {
-        "pollus/mvc": "^2.0.0",
+        "pollus/mvc": "^2.3.0",
         "pollus/http-client-fingerprint": "^1.1.1",
         "zeuxisoo/slim-whoops": "0.6.4",
-        "monolog/monolog": "1.24.0"
+        "monolog/monolog": "1.24.0",
+        "pollus/twig-public-path": "^1.0.0"
     },
     "autoload": 
     {
